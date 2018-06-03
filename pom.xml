@@ -25,7 +25,7 @@
 	</properties>
 
 	<dependencies>
-		<!-- Librerio QR -->
+		<!-- Libreria QR -->
 		<dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
@@ -36,7 +36,6 @@
             <artifactId>javase</artifactId>
             <version>3.2.1</version>
         </dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -60,14 +59,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
-		<!--  
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		-->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -78,8 +69,6 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
-
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
@@ -97,7 +86,7 @@
 			<version>3.17</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
+		<!-- PDF Library -->
 		<dependency>
 			<groupId>com.itextpdf</groupId>
 			<artifactId>itextpdf</artifactId>
