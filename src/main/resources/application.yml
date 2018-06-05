@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://db4free.net:3306/asistencia
+    url: jdbc:mysql://db4free.net:3306/asistencia?verifyServerCertificate=false&useSSL=false&requireSSL=false
     username: fisi_infra
     password: fi$iinfr@
   mvc:

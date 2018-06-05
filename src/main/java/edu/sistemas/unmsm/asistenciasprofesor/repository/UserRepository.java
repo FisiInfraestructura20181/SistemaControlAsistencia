@@ -5,11 +5,12 @@ import java.io.Serializable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import edu.sistemas.unmsm.asistenciasprofesor.entity.User;
+import edu.sistemas.unmsm.asistenciasprofesor.entity.Users;
+
 
 @Repository("userRepository")
-public interface UserRepository extends JpaRepository<User, Serializable> {
+public interface UserRepository extends JpaRepository<Users, Serializable> {
 	
-	public abstract User findByUsername(String username);
+	public abstract Users findByUsername(String username);
 	
 }
