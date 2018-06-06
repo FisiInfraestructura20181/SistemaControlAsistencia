@@ -7,8 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -17,15 +15,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "alumno")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Alumno.findAll", query = "SELECT a FROM Alumno a"),
-    @NamedQuery(name = "Alumno.findByCodigo", query = "SELECT a FROM Alumno a WHERE a.codigo = :codigo"),
-    @NamedQuery(name = "Alumno.findByNombres", query = "SELECT a FROM Alumno a WHERE a.nombres = :nombres"),
-    @NamedQuery(name = "Alumno.findByApeMaterno", query = "SELECT a FROM Alumno a WHERE a.apeMaterno = :apeMaterno"),
-    @NamedQuery(name = "Alumno.findByApePaterno", query = "SELECT a FROM Alumno a WHERE a.apePaterno = :apePaterno"),
-    @NamedQuery(name = "Alumno.findByCorreo", query = "SELECT a FROM Alumno a WHERE a.correo = :correo"),
-    @NamedQuery(name = "Alumno.findByTelefono", query = "SELECT a FROM Alumno a WHERE a.telefono = :telefono"),
-    @NamedQuery(name = "Alumno.findByMac", query = "SELECT a FROM Alumno a WHERE a.mac = :mac")})
 public class Alumno implements Serializable {
 
     private static final long serialVersionUID = 1L;

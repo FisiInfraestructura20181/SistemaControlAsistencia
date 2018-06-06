@@ -7,8 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -17,12 +15,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "profesor")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Profesor.findAll", query = "SELECT p FROM Profesor p"),
-    @NamedQuery(name = "Profesor.findByIdProfesor", query = "SELECT p FROM Profesor p WHERE p.idProfesor = :idProfesor"),
-    @NamedQuery(name = "Profesor.findByNombres", query = "SELECT p FROM Profesor p WHERE p.nombres = :nombres"),
-    @NamedQuery(name = "Profesor.findByApePaterno", query = "SELECT p FROM Profesor p WHERE p.apePaterno = :apePaterno"),
-    @NamedQuery(name = "Profesor.findByApeMaterno", query = "SELECT p FROM Profesor p WHERE p.apeMaterno = :apeMaterno")})
 public class Profesor implements Serializable {
 
     private static final long serialVersionUID = 1L;

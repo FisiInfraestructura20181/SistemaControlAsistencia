@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -24,14 +22,6 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Entity
 @Table(name = "sesion")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Sesion.findAll", query = "SELECT s FROM Sesion s"),
-    @NamedQuery(name = "Sesion.findAllByIdCurso", query = "SELECT s FROM Sesion s WHERE s.idCurso.idCurso = :idCurso"),
-    @NamedQuery(name = "Sesion.findByIdSesion", query = "SELECT s FROM Sesion s WHERE s.idSesion = :idSesion"),
-    @NamedQuery(name = "Sesion.findByFecha", query = "SELECT s FROM Sesion s WHERE s.fecha = :fecha"),
-    @NamedQuery(name = "Sesion.findByHoraInicio", query = "SELECT s FROM Sesion s WHERE s.horaInicio = :horaInicio"),
-    @NamedQuery(name = "Sesion.findByHoraFin", query = "SELECT s FROM Sesion s WHERE s.horaFin = :horaFin"),
-    @NamedQuery(name = "Sesion.findByHoraTolerancia", query = "SELECT s FROM Sesion s WHERE s.horaTolerancia = :horaTolerancia")})
 public class Sesion implements Serializable {
 
     private static final long serialVersionUID = 1L;

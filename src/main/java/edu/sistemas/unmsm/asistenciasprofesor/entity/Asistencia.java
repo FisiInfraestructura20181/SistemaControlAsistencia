@@ -7,8 +7,6 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -18,13 +16,6 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Entity
 @Table(name = "asistencia")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Asistencia.findAll", query = "SELECT a FROM Asistencia a"),
-    @NamedQuery(name = "Asistencia.findAllByIdCurso", query = "SELECT a FROM Asistencia a WHERE a.sesion.idCurso.idCurso = :idCurso"),
-    @NamedQuery(name = "Asistencia.findAllByIdCursoCodigo", query = "SELECT a FROM Asistencia a WHERE a.sesion.idCurso.idCurso = :idCurso AND a.alumno.codigo = :codigo"),
-    @NamedQuery(name = "Asistencia.findAllByIdSesion", query = "SELECT a FROM Asistencia a WHERE a.asistenciaPK.idSesion = :idSesion"),
-    @NamedQuery(name = "Asistencia.findByCodigo", query = "SELECT a FROM Asistencia a WHERE a.asistenciaPK.codigo = :codigo"),
-    @NamedQuery(name = "Asistencia.findByHoraLlegada", query = "SELECT a FROM Asistencia a WHERE a.horaLlegada = :horaLlegada")})
 public class Asistencia implements Serializable {
 
     private static final long serialVersionUID = 1L;
