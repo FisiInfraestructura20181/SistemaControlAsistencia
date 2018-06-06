@@ -2,12 +2,12 @@ package edu.sistemas.unmsm.asistenciasprofesor.converter.impl;
 
 import org.springframework.stereotype.Component;
 
-import edu.sistemas.unmsm.asistenciasprofesor.converter.Converter;
+import edu.sistemas.unmsm.asistenciasprofesor.converter.AbstractConverter;
 import edu.sistemas.unmsm.asistenciasprofesor.entity.Alumno;
 import edu.sistemas.unmsm.asistenciasprofesor.model.AlumnoModel;
 
 @Component("alumnoConverter")
-public class AlumnoConverter extends Converter<Alumno, AlumnoModel>{
+public class AlumnoConverter extends AbstractConverter<Alumno, AlumnoModel>{
 
 	@Override
 	public Alumno modelToEntity(AlumnoModel m) {
