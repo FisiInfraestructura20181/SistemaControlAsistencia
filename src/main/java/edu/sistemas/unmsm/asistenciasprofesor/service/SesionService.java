@@ -11,7 +11,7 @@ public interface SesionService {
 	
 	public abstract List<SesionModel> listAllSesiones();
 	
-	public abstract List<SesionModel> listSesionesByCurso(String id);
+	public abstract List<SesionModel> listSesionesByGrupo(int id);
 	
 	public abstract Sesion findSesionById (String id);
 	

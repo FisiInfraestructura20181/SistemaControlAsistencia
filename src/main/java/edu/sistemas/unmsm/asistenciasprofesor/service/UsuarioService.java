@@ -1,6 +1,6 @@
 package edu.sistemas.unmsm.asistenciasprofesor.service;
 
-public class UserService {}
+public class UsuarioService {}
 /*
 import java.util.ArrayList;
 import java.util.HashSet;

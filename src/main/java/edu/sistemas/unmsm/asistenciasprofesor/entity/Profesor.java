@@ -8,12 +8,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-@Table(name = "profesor")
+@Table(name = "Profesor")
 @XmlRootElement
 public class Profesor implements Serializable {
 
@@ -31,10 +32,10 @@ public class Profesor implements Serializable {
     @Basic(optional = false)
     @Column(name = "ape_materno", length = 20)
     private String apeMaterno;
-    @OneToMany(mappedBy = "idProfesor")
-    private List<Curso> cursoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProfesor")
-    private List<Users> usersList;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idProfesor")
+    private Usuario usuario;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "profesor")
+    private List<Grupo> grupoList;
 
     public Profesor() {
     }
@@ -43,11 +44,10 @@ public class Profesor implements Serializable {
         this.idProfesor = idProfesor;
     }
 
-    public Profesor(String idProfesor, String nombres, String apePaterno, String apeMaterno) {
+    public Profesor(String idProfesor, String nombres, String apePaterno) {
         this.idProfesor = idProfesor;
         this.nombres = nombres;
         this.apePaterno = apePaterno;
-        this.apeMaterno = apeMaterno;
     }
 
     public String getIdProfesor() {
@@ -82,22 +82,21 @@ public class Profesor implements Serializable {
         this.apeMaterno = apeMaterno;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     @XmlTransient
-    public List<Curso> getCursoList() {
-        return cursoList;
+    public List<Grupo> getGrupoList() {
+        return grupoList;
     }
 
-    public void setCursoList(List<Curso> cursoList) {
-        this.cursoList = cursoList;
-    }
-
-    @XmlTransient
-    public List<Users> getUsersList() {
-        return usersList;
-    }
-
-    public void setUsersList(List<Users> usersList) {
-        this.usersList = usersList;
+    public void setGrupoList(List<Grupo> grupoList) {
+        this.grupoList = grupoList;
     }
 
     @Override
@@ -122,7 +121,7 @@ public class Profesor implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Profesor[ idProfesor=" + idProfesor + " ]";
+        return "e.Profesor[ idProfesor=" + idProfesor + " ]";
     }
 
 }

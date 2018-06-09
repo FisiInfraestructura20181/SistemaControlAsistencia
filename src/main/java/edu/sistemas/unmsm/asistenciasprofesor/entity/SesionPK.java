@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class AsistenciaPK implements Serializable {
+public class SesionPK implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -22,19 +22,15 @@ public class AsistenciaPK implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_profesor", length = 10)
     private String idProfesor;
-    @Basic(optional = false)
-    @Column(name = "codigo", length = 10)
-    private String codigo;
 
-    public AsistenciaPK() {
+    public SesionPK() {
     }
 
-    public AsistenciaPK(String idSesion, int nroGrupo, String idCurso, String idProfesor, String codigo) {
+    public SesionPK(String idSesion, int nroGrupo, String idCurso, String idProfesor) {
         this.idSesion = idSesion;
         this.nroGrupo = nroGrupo;
         this.idCurso = idCurso;
         this.idProfesor = idProfesor;
-        this.codigo = codigo;
     }
 
     public String getIdSesion() {
@@ -69,14 +65,6 @@ public class AsistenciaPK implements Serializable {
         this.idProfesor = idProfesor;
     }
 
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -84,17 +72,16 @@ public class AsistenciaPK implements Serializable {
         hash += (int) nroGrupo;
         hash += (idCurso != null ? idCurso.hashCode() : 0);
         hash += (idProfesor != null ? idProfesor.hashCode() : 0);
-        hash += (codigo != null ? codigo.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof AsistenciaPK)) {
+        if (!(object instanceof SesionPK)) {
             return false;
         }
-        AsistenciaPK other = (AsistenciaPK) object;
+        SesionPK other = (SesionPK) object;
         if ((this.idSesion == null && other.idSesion != null) || (this.idSesion != null && !this.idSesion.equals(other.idSesion))) {
             return false;
         }
@@ -107,15 +94,12 @@ public class AsistenciaPK implements Serializable {
         if ((this.idProfesor == null && other.idProfesor != null) || (this.idProfesor != null && !this.idProfesor.equals(other.idProfesor))) {
             return false;
         }
-        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "e.AsistenciaPK[ idSesion=" + idSesion + ", nroGrupo=" + nroGrupo + ", idCurso=" + idCurso + ", idProfesor=" + idProfesor + ", codigo=" + codigo + " ]";
+        return "e.SesionPK[ idSesion=" + idSesion + ", nroGrupo=" + nroGrupo + ", idCurso=" + idCurso + ", idProfesor=" + idProfesor + " ]";
     }
 
 }

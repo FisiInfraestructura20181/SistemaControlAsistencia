@@ -2,10 +2,13 @@ package edu.sistemas.unmsm.asistenciasprofesor.entity;
 
 import java.io.Serializable;
 import java.time.LocalTime;
+
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -14,32 +17,38 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
-@Table(name = "asistencia")
+@Table(name = "Asistencia")
 @XmlRootElement
 public class Asistencia implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected AsistenciaPK asistenciaPK;
+    @Basic(optional = false)
     @Column(name = "hora_llegada")
     @DateTimeFormat(iso=ISO.TIME)
     private LocalTime horaLlegada;
     @JoinColumn(name = "codigo", referencedColumnName = "codigo", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Alumno alumno;
-    @JoinColumn(name = "id_sesion", referencedColumnName = "id_sesion", insertable = false, updatable = false)
+    @JoinColumns({
+        @JoinColumn(name = "id_sesion", referencedColumnName = "id_sesion", insertable = false, updatable = false),
+        @JoinColumn(name = "nro_grupo", referencedColumnName = "nro_grupo", insertable = false, updatable = false),
+        @JoinColumn(name = "id_curso", referencedColumnName = "id_curso", insertable = false, updatable = false),
+        @JoinColumn(name = "id_profesor", referencedColumnName = "id_profesor", insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private Sesion sesion;
-
+    
     public Asistencia() {
     }
 
-    public Asistencia(AsistenciaPK asistenciaPK) {
+    public Asistencia(AsistenciaPK asistenciaPK, LocalTime horaLlegada) {
         this.asistenciaPK = asistenciaPK;
+        this.horaLlegada = horaLlegada;
     }
 
-    public Asistencia(String idSesion, String codigo) {
-        this.asistenciaPK = new AsistenciaPK(idSesion, codigo);
+    public Asistencia(String idSesion, int nroGrupo, String idCurso, String idProfesor, String codigo) {
+        this.asistenciaPK = new AsistenciaPK(idSesion, nroGrupo, idCurso, idProfesor, codigo);
     }
 
     public AsistenciaPK getAsistenciaPK() {

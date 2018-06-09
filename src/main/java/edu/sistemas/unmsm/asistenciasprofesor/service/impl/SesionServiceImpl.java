@@ -40,13 +40,8 @@ public class SesionServiceImpl implements SesionService {
 	}
 
 	@Override
-	public List<SesionModel> listSesionesByCurso(String id) {
-		List<Sesion> sesiones = sesionRepository.findAllByIdCurso(id);
-		List<SesionModel> sesionesModel = new ArrayList<>();
-		sesiones.forEach(sesion -> {
-			sesionesModel.add(sesionConverter.entityToModel(sesion));
-		});
-		return sesionesModel;
+	public List<SesionModel> listSesionesByGrupo (int id) {
+		return null;
 	}
 
 

@@ -6,14 +6,18 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-@Table(name = "alumno")
+@Table(name = "Alumno")
 @XmlRootElement
 public class Alumno implements Serializable {
 
@@ -26,19 +30,25 @@ public class Alumno implements Serializable {
     @Column(name = "nombres", length = 30)
     private String nombres;
     @Basic(optional = false)
+    @Column(name = "ape_paterno", length = 20)
+    private String apePaterno;
     @Column(name = "ape_materno", length = 20)
     private String apeMaterno;
     @Basic(optional = false)
-    @Column(name = "ape_paterno", length = 20)
-    private String apePaterno;
-    @Basic(optional = false)
-    @Column(name = "correo", unique = true)
+    @Column(name = "correo", length = 70)
     private String correo;
     @Column(name = "telefono", length = 12)
     private String telefono;
-    @Column(name = "mac", length = 20, unique = true)
+    @Column(name = "mac", length = 20)
     private String mac;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "alumno")
+    @JoinTable(name = "Matricula", joinColumns = {
+        @JoinColumn(name = "codigo", referencedColumnName = "codigo")}, inverseJoinColumns = {
+        @JoinColumn(name = "nro_grupo", referencedColumnName = "nro_grupo"),
+        @JoinColumn(name = "id_curso", referencedColumnName = "id_curso"),
+        @JoinColumn(name = "id_profesor", referencedColumnName = "id_profesor")})
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Grupo> grupoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "alumno", fetch = FetchType.EAGER)
     private List<Asistencia> asistenciaList;
 
     public Alumno() {
@@ -48,10 +58,9 @@ public class Alumno implements Serializable {
         this.codigo = codigo;
     }
 
-    public Alumno(String codigo, String nombres, String apeMaterno, String apePaterno, String correo) {
+    public Alumno(String codigo, String nombres, String apePaterno, String correo) {
         this.codigo = codigo;
         this.nombres = nombres;
-        this.apeMaterno = apeMaterno;
         this.apePaterno = apePaterno;
         this.correo = correo;
     }
@@ -72,20 +81,20 @@ public class Alumno implements Serializable {
         this.nombres = nombres;
     }
 
-    public String getApeMaterno() {
-        return apeMaterno;
-    }
-
-    public void setApeMaterno(String apeMaterno) {
-        this.apeMaterno = apeMaterno;
-    }
-
     public String getApePaterno() {
         return apePaterno;
     }
 
     public void setApePaterno(String apePaterno) {
         this.apePaterno = apePaterno;
+    }
+
+    public String getApeMaterno() {
+        return apeMaterno;
+    }
+
+    public void setApeMaterno(String apeMaterno) {
+        this.apeMaterno = apeMaterno;
     }
 
     public String getCorreo() {
@@ -110,6 +119,15 @@ public class Alumno implements Serializable {
 
     public void setMac(String mac) {
         this.mac = mac;
+    }
+
+    @XmlTransient
+    public List<Grupo> getGrupoList() {
+        return grupoList;
+    }
+
+    public void setGrupoList(List<Grupo> grupoList) {
+        this.grupoList = grupoList;
     }
 
     @XmlTransient
@@ -143,7 +161,7 @@ public class Alumno implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Alumno[ codigo=" + codigo + " ]";
+        return "e.Alumno[ codigo=" + codigo + " ]";
     }
 
 }

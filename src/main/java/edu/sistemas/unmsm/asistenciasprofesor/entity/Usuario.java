@@ -6,47 +6,48 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-@Table(name = "users")
+@Table(name = "Usuario")
 @XmlRootElement
-public class Users implements Serializable {
+public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "username", length = 30)
+    @Column(name = "username", length = 70)
     private String username;
     @Basic(optional = false)
-    @Column(name = "password", length = 40)
+    @Column(name = "password", length = 70)
     private String password;
     @Basic(optional = false)
-    @Column(name = "enabled", length = 1)
-    private boolean enabled;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
-    private List<UserRoles> userRolesList;
+    @Column(name = "habilitado")
+    private boolean habilitado;
     @JoinColumn(name = "id_profesor", referencedColumnName = "id_profesor")
-    @ManyToOne(optional = false)
+    @OneToOne(optional = false, fetch = FetchType.EAGER)
     private Profesor idProfesor;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "username", fetch = FetchType.EAGER)
+    private List<UsuarioRol> usuarioRolList;
 
-    public Users() {
+    public Usuario() {
     }
 
-    public Users(String username) {
+    public Usuario(String username) {
         this.username = username;
     }
 
-    public Users(String username, String password, boolean enabled) {
+    public Usuario(String username, String password, boolean habilitado) {
         this.username = username;
         this.password = password;
-        this.enabled = enabled;
+        this.habilitado = habilitado;
     }
 
     public String getUsername() {
@@ -65,21 +66,12 @@ public class Users implements Serializable {
         this.password = password;
     }
 
-    public boolean getEnabled() {
-        return enabled;
+    public boolean getHabilitado() {
+        return habilitado;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    @XmlTransient
-    public List<UserRoles> getUserRolesList() {
-        return userRolesList;
-    }
-
-    public void setUserRolesList(List<UserRoles> userRolesList) {
-        this.userRolesList = userRolesList;
+    public void setHabilitado(boolean habilitado) {
+        this.habilitado = habilitado;
     }
 
     public Profesor getIdProfesor() {
@@ -88,6 +80,15 @@ public class Users implements Serializable {
 
     public void setIdProfesor(Profesor idProfesor) {
         this.idProfesor = idProfesor;
+    }
+
+    @XmlTransient
+    public List<UsuarioRol> getUsuarioRolList() {
+        return usuarioRolList;
+    }
+
+    public void setUsuarioRolList(List<UsuarioRol> usuarioRolList) {
+        this.usuarioRolList = usuarioRolList;
     }
 
     @Override
@@ -100,10 +101,10 @@ public class Users implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Users)) {
+        if (!(object instanceof Usuario)) {
             return false;
         }
-        Users other = (Users) object;
+        Usuario other = (Usuario) object;
         if ((this.username == null && other.username != null) || (this.username != null && !this.username.equals(other.username))) {
             return false;
         }
@@ -112,7 +113,7 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Users[ username=" + username + " ]";
+        return "e.Usuario[ username=" + username + " ]";
     }
 
 }

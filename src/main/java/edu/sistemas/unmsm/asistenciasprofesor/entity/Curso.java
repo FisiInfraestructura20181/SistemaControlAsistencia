@@ -7,15 +7,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-@Table(name = "curso")
+@Table(name = "Curso")
 @XmlRootElement
 public class Curso implements Serializable {
 
@@ -27,11 +25,8 @@ public class Curso implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre", length = 70)
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCurso")
-    private List<Sesion> sesionList;
-    @JoinColumn(name = "id_profesor", referencedColumnName = "id_profesor")
-    @ManyToOne
-    private Profesor idProfesor;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "curso")
+    private List<Grupo> grupoList;
 
     public Curso() {
     }
@@ -62,20 +57,12 @@ public class Curso implements Serializable {
     }
 
     @XmlTransient
-    public List<Sesion> getSesionList() {
-        return sesionList;
+    public List<Grupo> getGrupoList() {
+        return grupoList;
     }
 
-    public void setSesionList(List<Sesion> sesionList) {
-        this.sesionList = sesionList;
-    }
-
-    public Profesor getIdProfesor() {
-        return idProfesor;
-    }
-
-    public void setIdProfesor(Profesor idProfesor) {
-        this.idProfesor = idProfesor;
+    public void setGrupoList(List<Grupo> grupoList) {
+        this.grupoList = grupoList;
     }
 
     @Override
@@ -100,7 +87,7 @@ public class Curso implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Curso[ idCurso=" + idCurso + " ]";
+        return "e.Curso[ idCurso=" + idCurso + " ]";
     }
 
 }

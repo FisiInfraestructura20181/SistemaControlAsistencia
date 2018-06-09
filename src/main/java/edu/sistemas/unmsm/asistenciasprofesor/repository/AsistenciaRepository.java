@@ -13,7 +13,7 @@ import edu.sistemas.unmsm.asistenciasprofesor.entity.Asistencia;
 @Repository("asistenciaRepository")
 public interface AsistenciaRepository extends JpaRepository<Asistencia, Serializable>{
 
-	@Query("SELECT a FROM Asistencia a WHERE a.sesion.idCurso.idCurso = :idCurso")
+	@Query("SELECT a FROM Asistencia a WHERE a.sesion.grupo.curso.idCurso = :idCurso")
 	public abstract List<Asistencia> findAllByIdCurso (@Param("idCurso") String id);
 	
 	@Query("SELECT a FROM Asistencia a WHERE a.asistenciaPK.idSesion = :idSesion")
