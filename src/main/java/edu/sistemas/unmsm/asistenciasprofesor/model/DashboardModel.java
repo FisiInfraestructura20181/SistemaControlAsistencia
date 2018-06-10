@@ -6,6 +6,8 @@ public class DashboardModel {
 	
 	private String proxCurso;
 
+	private ProfesorModel profesor;
+	
 	public int getNroCursos() {
 		return nroCursos;
 	}
@@ -25,5 +27,13 @@ public class DashboardModel {
 	@Override
 	public String toString() {
 		return "DashboardModel [nroCursos=" + nroCursos + ", proxCurso=" + proxCurso + "]";
+	}
+
+	public ProfesorModel getProfesor() {
+		return profesor;
+	}
+
+	public void setProfesor(ProfesorModel profesor) {
+		this.profesor = profesor;
 	}
 }

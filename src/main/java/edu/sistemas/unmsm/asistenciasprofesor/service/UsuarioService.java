@@ -11,14 +11,21 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import edu.sistemas.unmsm.asistenciasprofesor.converter.impl.ProfesorConverter;
+import edu.sistemas.unmsm.asistenciasprofesor.entity.Profesor;
+import edu.sistemas.unmsm.asistenciasprofesor.entity.Usuario;
 import edu.sistemas.unmsm.asistenciasprofesor.entity.UsuarioRol;
+import edu.sistemas.unmsm.asistenciasprofesor.model.ProfesorModel;
 import edu.sistemas.unmsm.asistenciasprofesor.repository.UsuarioRepository;;
 
 @Service("userService")
@@ -26,6 +33,11 @@ public class UsuarioService implements UserDetailsService{
 	@Autowired
 	@Qualifier("usuarioRepository")
 	private UsuarioRepository userRepository;
+	
+	@Autowired
+	@Qualifier("profesorConverter")
+	private ProfesorConverter profesorConverter;
+	
 	private static final Log LOG = LogFactory.getLog(UsuarioService.class);
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -50,6 +62,21 @@ public class UsuarioService implements UserDetailsService{
 		list.forEach( ur -> auths.add(new SimpleGrantedAuthority(ur.getRol())));
 		
 		return new ArrayList<GrantedAuthority>(auths);
+	}
+	
+	public ProfesorModel usuarioAutenticado() {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		UserDetails userDetails = (UserDetails) auth.getPrincipal();
+		
+		if(userDetails != null) {
+			Profesor profesor = userRepository.findByUsername(userDetails.getUsername()).getIdProfesor();
+			return profesorConverter.entityToModel(profesor);
+		}
+		
+		return null;
+		
 	}
 
 }

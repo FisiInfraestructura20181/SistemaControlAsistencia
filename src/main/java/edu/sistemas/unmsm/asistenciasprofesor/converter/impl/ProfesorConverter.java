@@ -17,7 +17,7 @@ public class ProfesorConverter extends AbstractConverter<Profesor, ProfesorModel
 
 	@Override
 	public ProfesorModel entityToModel(Profesor e) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

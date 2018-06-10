@@ -27,7 +27,7 @@ public class LoginController {
 		return ViewConstants.LOGIN;
 	}
 	
-	@GetMapping("")
+	@GetMapping("/loginsuccess")
 	public String loginSuccess() {
 		LOG.info("METHOD: loginSuccess()");
 		
