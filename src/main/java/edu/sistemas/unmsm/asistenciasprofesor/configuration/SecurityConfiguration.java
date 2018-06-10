@@ -1,7 +1,5 @@
 package edu.sistemas.unmsm.asistenciasprofesor.configuration;
 
-public class SecurityConfiguration { }
-/*
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
@@ -29,11 +26,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers("/css/*",
-				"/images/*", 
-				"/bootstrap/*","/bootstrap/css/*","/bootstrap/js/*",
-				"/font-awesome/*","/font-awesome/css/*", "/font-awesome/fonts/*", 
-				"/jquery/*", 
+		.antMatchers("/css/*", 
+				"/vendor/bootstrap/*","/vendor/bootstrap/css/*","/vendor/bootstrap/js/*",
+				"/vendor/font-awesome/*","/vendor/font-awesome/css/*", "/vendor/font-awesome/fonts/*", 
+				"/js/*",
+				"/vendor/chart.js/*",
+				"/vendor/datatables/*", 
+				"/vendor/jquery/*", 
+				"/vendor/jquery-easing/*", 
 				"/scripts/*").permitAll()
 		.anyRequest().authenticated()
 		.and()
@@ -53,4 +53,3 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	}
 	
 }
-*/

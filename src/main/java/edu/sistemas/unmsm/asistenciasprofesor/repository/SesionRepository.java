@@ -11,7 +11,7 @@ import edu.sistemas.unmsm.asistenciasprofesor.entity.Sesion;
 @Repository("sesionRepository")
 public interface SesionRepository extends JpaRepository<Sesion, Serializable>{
 	
-	@Query("SELECT s FROM Sesion s WHERE s.grupo.idGrupo = :idCurso")
-	public abstract List<Sesion> findAllByIdCurso (@Param("idCurso") String id);
+	/*@Query("SELECT s FROM Sesion s WHERE s.grupo.idGrupo = :idCurso")
+	public abstract List<Sesion> findAllByIdCurso (@Param("idCurso") String id);*/
 	
 }

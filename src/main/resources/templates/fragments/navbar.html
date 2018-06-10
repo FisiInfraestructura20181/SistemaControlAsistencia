@@ -1,43 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>Document</title>
-</head>
-<body>
-   <div th:fragment="site-navbar">
-   <!-- Navigation-->
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <a class="navbar-brand" th:href="@{/dashboard}">Sistema de Asitencia</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" th:href="@{/dashboard}">
-            <i class="fa fa-fw fa-book"></i>
-            <span class="nav-link-text">Cursos</span>
-            </a>
-         </li>
-      </ul>
-      <ul class="navbar-nav sidenav-toggler">
-         <li class="nav-item">
-            <a class="nav-link text-center" id="sidenavToggler">
-            <i class="fa fa-fw fa-angle-left"></i>
-            </a>
-         </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-         <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-         </li>
-      </ul>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Document</title>
+   </head>
+   <body>
+      <div th:fragment="site-navbar">
+         <!-- Navigation-->
+         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+            id="mainNav">
+            <a class="navbar-brand" th:href="@{/dashboard}">Sistema de Asitencia</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button"
+               data-toggle="collapse" data-target="#navbarResponsive"
+               aria-controls="navbarResponsive" aria-expanded="false"
+               aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+               <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                  <li class="nav-item" data-toggle="tooltip"
+                     data-placement="right" title="Dashboard">
+                     <a class="nav-link" th:href="@{/dashboard}">
+                        <i class="fa fa-fw fa-book"></i>
+                        <span class="nav-link-text">Cursos</span>
+                     </a>
+                  </li>
+               </ul>
+               <ul class="navbar-nav sidenav-toggler">
+                  <li class="nav-item">
+                     <a class="nav-link text-center" id="sidenavToggler">
+                        <i class="fa fa-fw fa-angle-left"></i>
+                     </a>
+                  </li>
+               </ul>
+               <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                     <a class="nav-link" data-toggle="modal"
+                        data-target="#logoutModal">
+                        <i class="fa fa-fw fa-sign-out"></i>Cerrar Sesión</a>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+
+         <!-- Logout Modal-->
+         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+            aria-labelledby="logoutModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="logoutModalLabel">¿Está seguro
+                        que desea cerrar sesión?</h5>
+                     <button class="close" type="button" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     Presione el botón 'Cerrar Sesión' para salir del sistema de
+                     asistencia
+                  </div>
+                  <div class="modal-footer">
+                     <button class="btn btn-secondary" type="button"
+                        data-dismiss="modal">Cancelar</button>
+                     <form th:action="@{/logout}" method="POST">
+                        <button class="btn btn-primary" type="submit">
+                           Cerrar Sesión
+                        </button>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
-   </nav>
-   </div>
-</body>
-</html>
+   </body>
+</html>>

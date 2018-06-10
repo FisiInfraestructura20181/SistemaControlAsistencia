@@ -35,32 +35,35 @@ public class AsistenciaServiceImpl implements AsistenciaService{
 
 	@Override
 	public List<AsistenciaModel> listAsistenciasByCurso(String id) {
-		List<Asistencia> asistencias = asistenciaRepository.findAllByIdCurso(id);
+		/*List<Asistencia> asistencias = asistenciaRepository.findAllByIdCurso(id);
 		List<AsistenciaModel> asistenciasModel = new ArrayList<>();
 		asistencias.forEach(asistencia -> {
 			asistenciasModel.add(asistenciaConverter.entityToModel(asistencia));
 		});
-		return asistenciasModel;
+		return asistenciasModel;*/
+		return null;
 	}
 
 	@Override
 	public List<AsistenciaModel> listAsistenciasBySesion(String id) {
-		List<Asistencia> asistencias = asistenciaRepository.findAllByIdSesion(id);
+		/*List<Asistencia> asistencias = asistenciaRepository.findAllByIdSesion(id);
 		List<AsistenciaModel> asistenciasModel = new ArrayList<>();
 		asistencias.forEach(asistencia -> {
 			asistenciasModel.add(asistenciaConverter.entityToModel(asistencia));
 		});
-		return asistenciasModel;
+		return asistenciasModel;*/
+		return null;
 	}
 
 	@Override
 	public List<AsistenciaModel> listAsistenciasBySesionAlumno(String id, String codigo) {
-		List<Asistencia> asistencias = asistenciaRepository.findAllByIdCursoCodigo(id, codigo);
+		/*List<Asistencia> asistencias = asistenciaRepository.findAllByIdCursoCodigo(id, codigo);
 		List<AsistenciaModel> asistenciasModel = new ArrayList<>();
 		asistencias.forEach(asistencia -> {
 			asistenciasModel.add(asistenciaConverter.entityToModel(asistencia));
 		});
-		return asistenciasModel;
+		return asistenciasModel;*/
+		return null;
 	}
 
 }

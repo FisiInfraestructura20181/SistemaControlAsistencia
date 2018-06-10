@@ -51,12 +51,13 @@ public class CursoServiceImpl implements CursoService {
 
 	@Override
 	public List<CursoModel> listCursosByProfesor(String id) {
-		List<Curso> cursos = cursoRepository.findAllByIdProfesor(id);
+		/*List<Curso> cursos = cursoRepository.findAllByIdProfesor(id);
 		List<CursoModel> cursosModel = new ArrayList<>();
 		cursos.forEach(curso -> {
 			cursosModel.add(cursoConverter.entityToModel(curso));
 		});
-		return cursosModel;
+		return cursosModel;*/
+		return null;
 	}
 
 	@Override

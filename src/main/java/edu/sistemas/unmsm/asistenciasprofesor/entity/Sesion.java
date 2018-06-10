@@ -21,7 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
-@Table(name = "Sesion")
+@Table(name = "sesion")
 @XmlRootElement
 public class Sesion implements Serializable {
 

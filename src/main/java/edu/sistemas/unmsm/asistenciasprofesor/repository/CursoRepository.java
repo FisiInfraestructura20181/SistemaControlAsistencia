@@ -13,7 +13,7 @@ import edu.sistemas.unmsm.asistenciasprofesor.entity.Curso;
 @Repository("cursoRepository")
 public interface CursoRepository extends JpaRepository<Curso, Serializable> {
 
-	@Query("SELECT c FROM Curso c WHERE c.idProfesor.idProfesor = :idProfesor")
-	public abstract List<Curso> findAllByIdProfesor (@Param("idProfesor") String id);
+	/*@Query("SELECT c FROM Curso c WHERE c.idProfesor.idProfesor = :idProfesor")
+	public abstract List<Curso> findAllByIdProfesor (@Param("idProfesor") String id);*/
 	
 }

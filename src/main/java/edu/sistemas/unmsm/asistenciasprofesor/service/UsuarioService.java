@@ -1,12 +1,14 @@
 package edu.sistemas.unmsm.asistenciasprofesor.service;
 
-public class UsuarioService {}
-/*
+//public class UsuarioService {}
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,34 +18,38 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import edu.sistemas.unmsm.asistenciasprofesor.entity.UserRole;
-import edu.sistemas.unmsm.asistenciasprofesor.repository.UserRepository;
+import edu.sistemas.unmsm.asistenciasprofesor.entity.UsuarioRol;
+import edu.sistemas.unmsm.asistenciasprofesor.repository.UsuarioRepository;;
 
 @Service("userService")
-public class UserService implements UserDetailsService{
+public class UsuarioService implements UserDetailsService{
 	@Autowired
-	@Qualifier("userRepository")
-	private UserRepository userRepository;
-	
+	@Qualifier("usuarioRepository")
+	private UsuarioRepository userRepository;
+	private static final Log LOG = LogFactory.getLog(UsuarioService.class);
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		edu.sistemas.unmsm.asistenciasprofesor.entity.User user = userRepository.findByUsername(username);
-		List<GrantedAuthority> authorities = buildAuthorities(user.getUserRole());
+		
+		
+		edu.sistemas.unmsm.asistenciasprofesor.entity.Usuario user = userRepository.findByUsername(username);
+		LOG.info(user);
+		LOG.info(userRepository.findById(username));
+		
+		List<GrantedAuthority> authorities = buildAuthorities(user.getUsuarioRolList());
 		return buildUser(user, authorities);
 	}
 	
-	private User buildUser (edu.sistemas.unmsm.asistenciasprofesor.entity.User user, List<GrantedAuthority> authorities) {
-		return new User(user.getUsername(), user.getPassword(), user.isEnable(), 
+	private User buildUser (edu.sistemas.unmsm.asistenciasprofesor.entity.Usuario user, List<GrantedAuthority> authorities) {
+		return new User(user.getUsername(), user.getPassword(), user.getHabilitado(), 
 				true, true, true, authorities);
 	}
 	
-	private List<GrantedAuthority> buildAuthorities(Set<UserRole> userRoles) {
+	private List<GrantedAuthority> buildAuthorities(List<UsuarioRol> list) {
 		Set<GrantedAuthority> auths = new HashSet<GrantedAuthority>();
-		for (UserRole userRole : userRoles ) {
-			auths.add(new SimpleGrantedAuthority(userRole.getRole()));
-		}
+
+		list.forEach( ur -> auths.add(new SimpleGrantedAuthority(ur.getRol())));
+		
 		return new ArrayList<GrantedAuthority>(auths);
 	}
 
 }
-*/

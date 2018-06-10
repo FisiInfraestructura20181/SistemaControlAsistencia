@@ -1,6 +1,7 @@
 package edu.sistemas.unmsm.asistenciasprofesor.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.persistence.Basic;
@@ -17,7 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
-@Table(name = "Asistencia")
+@Table(name = "asistencia")
 @XmlRootElement
 public class Asistencia implements Serializable {
 
@@ -26,8 +27,8 @@ public class Asistencia implements Serializable {
     protected AsistenciaPK asistenciaPK;
     @Basic(optional = false)
     @Column(name = "hora_llegada")
-    @DateTimeFormat(iso=ISO.TIME)
-    private LocalTime horaLlegada;
+    @DateTimeFormat(iso=ISO.DATE_TIME)
+    private LocalDateTime horaLlegada;
     @JoinColumn(name = "codigo", referencedColumnName = "codigo", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Alumno alumno;
@@ -42,7 +43,7 @@ public class Asistencia implements Serializable {
     public Asistencia() {
     }
 
-    public Asistencia(AsistenciaPK asistenciaPK, LocalTime horaLlegada) {
+    public Asistencia(AsistenciaPK asistenciaPK, LocalDateTime horaLlegada) {
         this.asistenciaPK = asistenciaPK;
         this.horaLlegada = horaLlegada;
     }
@@ -59,11 +60,11 @@ public class Asistencia implements Serializable {
         this.asistenciaPK = asistenciaPK;
     }
     
-    public LocalTime getHoraLlegada() {
+    public LocalDateTime getHoraLlegada() {
 		return horaLlegada;
 	}
 
-	public void setHoraLlegada(LocalTime horaLlegada) {
+	public void setHoraLlegada(LocalDateTime horaLlegada) {
 		this.horaLlegada = horaLlegada;
 	}
 

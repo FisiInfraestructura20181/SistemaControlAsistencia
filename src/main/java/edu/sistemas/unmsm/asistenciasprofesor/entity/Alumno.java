@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-@Table(name = "Alumno")
+@Table(name = "alumno")
 @XmlRootElement
 public class Alumno implements Serializable {
 
@@ -46,9 +46,9 @@ public class Alumno implements Serializable {
         @JoinColumn(name = "nro_grupo", referencedColumnName = "nro_grupo"),
         @JoinColumn(name = "id_curso", referencedColumnName = "id_curso"),
         @JoinColumn(name = "id_profesor", referencedColumnName = "id_profesor")})
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     private List<Grupo> grupoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "alumno", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "alumno")
     private List<Asistencia> asistenciaList;
 
     public Alumno() {

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head th:include="/fragments/head :: head('Sistema de Asistencia - Inicio de
+    Sesión')">
+    <meta charset="utf-8">
+  </head>
+
+  <body class="bg-dark">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mt-3">
+          <div th:if="${error != null}" class="alert alert-danger
+            alert-dismissible"
+            role="alert">
+            <button type="button" class="close" data-dismiss="alert"
+              aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+            &nbsp;Usuario y/o contraseña incorrecta
+          </div>
+          <div th:if="${logout != null}" class="alert alert-info
+            alert-dismissible"
+            role="alert">
+            <button type="button" class="close" data-dismiss="alert"
+              aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            &nbsp;Sesión finalizada
+          </div>
+        </div>
+      </div>
+      <div class="card card-login mx-auto mt-5">
+        <div class="card-header">Login</div>
+        <div class="card-body">
+          <form th:action="@{/logincheck}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}"
+              th:value="${_csrf.token}" />
+            <div class="form-group">
+              <label for="exampleInputEmail1">Usuario</label>
+              <input class="form-control" id="exampleInputEmail1" type="text"
+                name="username" aria-describedby="emailHelp"
+                placeholder="Ingrese su usuario">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Constraseña</label>
+              <input class="form-control" id="exampleInputPassword1"
+                type="password" name="password" placeholder="Constraseña">
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox"> Recordar mi
+                  contraseña</label>
+              </div>
+            </div>
+            <button type="submit" id="enviar" class="btn btn-primary btn-block">
+              <i class="fa fa-sign-in" aria-hidden="true"></i>
+              &nbsp;Iniciar Sesión
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div th:include="/fragments/head :: scripts"></div>
+  </body>
+</html>
